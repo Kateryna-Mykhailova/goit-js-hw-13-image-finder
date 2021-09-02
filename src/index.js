@@ -22,6 +22,7 @@ refs.btnLoadMore.addEventListener('click', onLoadMore)
 
 export default function onSearch(e) {
     e.preventDefault();
+    clearGallery();
     newsApiService.name = e.currentTarget.elements.query.value;
     newsApiService.resetPage();
     newsApiService.fetchArticles().then(createGallery)
@@ -80,6 +81,11 @@ function createElement({webformatURL, largeImageURL, likes, views, comments, dow
     `
 refs.galleryList.insertAdjacentHTML('beforeend', galleryElement)
 };
+
+
+function clearGallery() {
+   refs.galleryList.innerHTML = ' ';
+ }
 
 // function createGallery({pageURL}) {
 
