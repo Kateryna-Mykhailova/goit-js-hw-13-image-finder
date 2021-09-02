@@ -8,9 +8,10 @@ import debounce from 'lodash.debounce';
 
 const refs = {
     form: document.querySelector('#search-form'),
-    btnLoadMore: document.querySelector('[data-action="load-more"]')
+    btnLoadMore: document.querySelector('[data-action="load-more"]'),
     // input: document.querySelector('#search'),
-    // container: document.querySelector('.container')
+    container: document.querySelector('.container'),
+    galleryList: document.querySelector('.gallery'),
 };
 
 
@@ -23,13 +24,74 @@ export default function onSearch(e) {
     e.preventDefault();
     newsApiService.name = e.currentTarget.elements.query.value;
     newsApiService.resetPage();
-    newsApiService.fetchArticles()
+    newsApiService.fetchArticles().then(createGallery)
     
 };
 
 function onLoadMore() {
-    newsApiService.fetchArticles()
+    // newsApiService.fetchArticles().then(hits => console.log(hits))
+      newsApiService.fetchArticles().then(createGallery)
  }
+
+
+function createGallery(hits) {
+    const images = hits.map(el => createElement(el));
+
+
+    // const images = hits.map(el => `<li>${el}</li>`).join(' ');
+
+    // const imagesList = `
+    // <ul>
+    //  <li class="gallery">${hits}</li>
+    // </ul>
+    // `
+    // refs.container.insertAdjacentHTML('beforeend', imagesList)
+};
+
+
+function createElement({webformatURL, largeImageURL, likes, views, comments, downloads}){
+
+    const galleryElement =
+    `
+     <li class="gallery">
+     <div class="photo-card">
+  <img src="${webformatURL}" alt="" />
+
+  <div class="stats">
+    <p class="stats-item">
+      <i class="material-icons">thumb_up</i>
+      ${likes}
+    </p>
+    <p class="stats-item">
+      <i class="material-icons">visibility</i>
+      ${views}
+    </p>
+    <p class="stats-item">
+      <i class="material-icons">comment</i>
+      ${ comments}
+    </p>
+    <p class="stats-item">
+      <i class="material-icons">cloud_download</i>
+       ${downloads}
+    </p>
+  </div>
+</div>
+     </li>
+    `
+refs.galleryList.insertAdjacentHTML('beforeend', galleryElement)
+};
+
+// function createGallery({pageURL}) {
+
+//     const imagesList = `
+//     <ul>
+//      <li class="gallery">${pageURL}</li>
+//     </ul>
+//     `
+//     refs.container.insertAdjacentHTML('beforeend', imagesList)
+//  }
+
+
 
 
 // function onSearch(e) {
