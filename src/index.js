@@ -1,22 +1,56 @@
-import './apiService'
+// import './apiService'
+// import onSearch from './apiService'
+import NewsApiService from './apiService';
 import './sass/main.scss';
 import { alert, error, info } from '../node_modules/@pnotify/core/dist/PNotify.js';
 import '@pnotify/core/dist/BrightTheme.css';
 import debounce from 'lodash.debounce';
 
+const refs = {
+    form: document.querySelector('#search-form'),
+    btnLoadMore: document.querySelector('[data-action="load-more"]')
+    // input: document.querySelector('#search'),
+    // container: document.querySelector('.container')
+};
 
 
- fetch(`https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=cat&page=1&per_page=12&key=23204413-d213403835507960634485f04`)
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
+const newsApiService = new NewsApiService()
+
+refs.form.addEventListener('submit', onSearch)
+refs.btnLoadMore.addEventListener('click', onLoadMore)
+
+export default function onSearch(e) {
+    e.preventDefault();
+    newsApiService.name = e.currentTarget.elements.query.value;
+    newsApiService.resetPage();
+    newsApiService.fetchArticles()
+    
+};
+
+function onLoadMore() {
+    newsApiService.fetchArticles()
+ }
 
 
-// const refs = {
-//     form: document.querySelector('#form'),
-//     input: document.querySelector('#search'),
-//     container: document.querySelector('.container')
+// function onSearch(e) {
+//     e.preventDefault();
+//     // removeMarkup();
+//     // const name = e.target.value
+//     const name = e.currentTarget.elements.query.value
+//     console.log(name);
+  
+//    fetch(`https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${name}&page=3&per_page=12&key=23204413-d213403835507960634485f04`)
+//         .then(response => response.json())
+//         .then(data => console.log(data))
+//         .catch(err => console.log(err))
+
+    
 // };
+
+
+
+
+
 
 // refs.input.addEventListener('input', debounce(onTextInput, 500));
 
@@ -30,10 +64,10 @@ import debounce from 'lodash.debounce';
 //         .then(data => renderCollection(data))
 //         .catch(err => console.log(err))
 
-//         // .catch(err => {
-//         //     console.log(err)
-//         //     onError(name)
-//         // })
+        // .catch(err => {
+        //     console.log(err)
+        //     onError(name)
+        // })
 // };
 
 // // function onError(name) {
