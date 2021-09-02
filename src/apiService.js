@@ -20,7 +20,7 @@ export default class NewsApiService {
      };
  
     fetchArticles() {
-        console.log(this);
+        // console.log(this);
     const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${this.name}&page=${this.page}&per_page=12&key=23204413-d213403835507960634485f04`;
 
     return fetch(url)
