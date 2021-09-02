@@ -1,0 +1,45 @@
+body {
+  padding: 20px;
+  background-color: rgba(145, 134, 142, 0.938);
+  line-height: 1.5;
+  font-family: sans;
+  color: rgb(0, 0, 0);
+}
+
+#search {
+  height: 30px;
+  width: 460px;
+  text-align: center;
+  font-family: monospace;
+  line-height: 2;
+}
+
+.country {
+  font-size: 50px;
+  text-shadow: 1px 1px rgb(85, 82, 82);
+}
+.country_text {
+  font-weight: bold;
+  font-size: 25px;
+  font-family: sans;
+
+  // -webkit-text-stroke: 1.2px black;
+}
+.country_info {
+  font-size: 30px;
+  font-family: sans;
+  color: rgb(88, 87, 87);
+}
+ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+img {
+  display: block;
+  width: 250px;
+  height: 150px;
+  text-align: center;
+  align-items: center;
+}
