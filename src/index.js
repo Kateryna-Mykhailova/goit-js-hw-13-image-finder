@@ -1,6 +1,7 @@
 // import './apiService'
 // import onSearch from './apiService'
 import NewsApiService from './apiService';
+import LoadMoreBtn from './load-more-btn';
 import './sass/main.scss';
 import { alert, error, info } from '../node_modules/@pnotify/core/dist/PNotify.js';
 import '@pnotify/core/dist/BrightTheme.css';
@@ -15,11 +16,17 @@ const refs = {
 };
 
 
-const newsApiService = new NewsApiService()
+const newsApiService = new NewsApiService();
+const loadMoreBtn = new LoadMoreBtn({
+  selector: '[data-action="load-more"]',
+  hidden: true
+});
 
 refs.form.addEventListener('submit', onSearch)
 refs.btnLoadMore.addEventListener('click', onLoadMore)
 refs.btnLoadMore.addEventListener('click', handleBtnClick)
+loadMoreBtn.refs.button.addEventListener('click', onLoadMore)
+
 
 export default function onSearch(e) {
     e.preventDefault();
@@ -28,15 +35,22 @@ export default function onSearch(e) {
 
     if (newsApiService.name === '') {
         return alert ({ text: 'Enter texts to search' })
-     }
+    }
+  loadMoreBtn.show();
+  loadMoreBtn.disable();
     newsApiService.resetPage();
-    newsApiService.fetchArticles().then(createGallery)
+    newsApiService.fetchArticles().then(data => {  createGallery(data),
+      loadMoreBtn.enable()}
     
+  )
+  
 };
 
 function onLoadMore() {
+  loadMoreBtn.disable();
     // newsApiService.fetchArticles().then(hits => console.log(hits))
-    newsApiService.fetchArticles().then(createGallery)
+    newsApiService.fetchArticles().then(data => {  createGallery(data),
+      loadMoreBtn.enable()})
     
  }
 
