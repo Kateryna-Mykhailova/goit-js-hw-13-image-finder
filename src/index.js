@@ -33,7 +33,8 @@ export default function onSearch(e) {
     clearGallery();
     newsApiService.name = e.currentTarget.elements.query.value;
 
-    if (newsApiService.name === '') {
+  if (newsApiService.name === '') {
+      loadMoreBtn.disable();
         return alert ({ text: 'Enter texts to search' })
     }
    
