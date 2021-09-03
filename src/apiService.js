@@ -11,11 +11,10 @@ export default class NewsApiService {
     return fetch(url)
         .then(response => response.json())
         // .then(data => console.log(data))
-        .then(data => { console.log(data)
+        .then(data => { 
             this.page += 1;
             return data.hits
-       
-          
+    
         })  
         .catch(err => {
             console.log(err);
