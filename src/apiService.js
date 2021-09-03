@@ -1,18 +1,3 @@
-// 
-// https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=что_искать&page=номер_страницы&per_page=12&key=23204413 - d213403835507960634485f04
-// export default function onSearch(e) {
-//     e.preventDefault();
-
-//     const name = e.currentTarget.elements.query.value
-//     console.log(name);
-  
-//    fetch(`https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${name}&page=3&per_page=12&key=23204413-d213403835507960634485f04`)
-//         .then(response => response.json())
-//         .then(data => console.log(data))
-//         .catch(err => console.log(err))
-    
-// };
-
 export default class NewsApiService {
     constructor() {
         this.name = '';
@@ -27,12 +12,15 @@ export default class NewsApiService {
         .then(response => response.json())
         // .then(data => console.log(data))
         .then(data => {
-            // console.log(data);
             this.page += 1;
             return data.hits
-
+        
+          
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log('error');
+            // error ({ text: 'No results' })
+        })
     };
 
     resetPage() {

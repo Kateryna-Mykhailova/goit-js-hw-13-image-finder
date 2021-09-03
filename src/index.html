@@ -15,26 +15,21 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   </head>
   <body>
-   
-<form class="search-form" id="search-form">
 
+<form class="search-form" id="search-form">
   <input type="text" name="query" autocomplete="off" placeholder="Search images..." />
   <button type="submit" class="btn"> <span>Search</span></button>
 </form>
 
 <div class="container">
-<ul class="gallery">
-
+<ul class="gallery-list" id="box" >
 </ul>
 </div>
 
-<button type="button" class="btn" data-action ="load-more">
+  <!-- <div id="box" class="box"></div> -->
+<button type="button" class="btn" data-action ="load-more" >
   <span>Lead more</span>
 </button>
-    <!-- Так добавляются фрагменты в главные HTML-файлы страниц. -->
-    <!-- <include src="./partials/example.html"></include> -->
-
     <script src="./index.js"></script>
-    <!-- <script src="./test.js"></script> -->
   </body>
 </html>
