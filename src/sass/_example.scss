@@ -58,6 +58,9 @@ img {
 
 .stats {
   color: aliceblue;
+  font-size: small;
+  line-height: 1.5;
+  font-family: sans;
 }
 // .box {
 //   visibility: hidden;
@@ -67,6 +70,18 @@ img {
   display: none;
 }
 
-// .button {
-//   display: block;
-// }
+.btn {
+  // display: inline-block;
+
+  height: 35px;
+  // border-radius: 2px;
+  // border: blue($color: #350404);
+}
+
+.btn-text {
+  color: rgb(56, 12, 41);
+  text-shadow: yellow;
+  line-height: 1.5;
+  font-family: sans;
+  font-weight: bold;
+}
