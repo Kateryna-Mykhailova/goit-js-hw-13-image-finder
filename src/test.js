@@ -22,15 +22,6 @@ function onTextInput(e) {
         .then(data => renderCollection(data))
         .catch(err => console.log(err))
 
-        // .catch(err => {
-        //     console.log(err)
-        //     onError(name)
-        // })
-};
-
-// function onError(name) {
-//    alert({ text: `По запросу "${name}" ничего не найдено` })
-// }
 
 function createCountry({ name, population, flag, capital, languages }) {
     const language = languages.map(el => `<li>${el.name}</li>`).join(' ')

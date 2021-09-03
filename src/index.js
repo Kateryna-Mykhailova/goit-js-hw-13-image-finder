@@ -36,22 +36,25 @@ export default function onSearch(e) {
     if (newsApiService.name === '') {
         return alert ({ text: 'Enter texts to search' })
     }
+   
   loadMoreBtn.show();
   loadMoreBtn.disable();
     newsApiService.resetPage();
-    newsApiService.fetchArticles().then(data => {  createGallery(data),
-      loadMoreBtn.enable()}
-    
-  )
-  
+  newsApiService.fetchArticles().then(data => {
+    if (data.length === 0) {
+      return error ({ text: 'No results' })
+  }
+    createGallery(data),
+      loadMoreBtn.enable()
+  })
 };
 
 function onLoadMore() {
   loadMoreBtn.disable();
-    // newsApiService.fetchArticles().then(hits => console.log(hits))
-    newsApiService.fetchArticles().then(data => {  createGallery(data),
+
+  newsApiService.fetchArticles().then(data => {
+    createGallery(data),
       loadMoreBtn.enable()})
-    
  }
 
 
@@ -104,8 +107,7 @@ function handleBtnClick() {
   setTimeout(() => {element.scrollIntoView({
   behavior: 'smooth',
   block: 'end',
-}) }, 700)
-     ;
+}) }, 700);
  }
 
 
